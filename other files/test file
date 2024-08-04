@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+
+import hashlib
+
+class User():
+    def __init__(self):
+        pass
+
+    @property
+    def password(self):
+        """I'm the 'password' property."""
+        return self._password
+
+    @password.setter
+    def password(self, raw_password):
+        """I'm the 'password' property."""
+        secure = hashlib.md5()
+        secure.update(raw_password.encode("utf-8"))
+        md5_password = secure.hexdigest()
+        self._password = md5_password
+
+
+print('test file starts')
+
+user1 = User()
+user1.password = 'anas'
+print("user1.password : {}".format(user1.password))
+print(user1.__dict__)
+
+user2 = User()
+print("user2.password : {}".format(user2.password))
+print(user2.__dict__)
